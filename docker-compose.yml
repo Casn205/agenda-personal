@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  agenda-app:
+    image: yeimmisc/agenda-app:1.0
+    container_name: agenda-container
+    ports:
+      - "3000:3000"
+    volumes:
+      - agenda-data:/app/database
+    restart: unless-stopped
+
+volumes:
+  agenda-data:
