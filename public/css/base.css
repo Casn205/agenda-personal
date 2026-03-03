@@ -1,0 +1,65 @@
+/* ─────────────────────────────────────────
+   base.css — Variables, reset y estilos globales
+   ───────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0f14;
+  --surface: #13161f;
+  --surface2: #1a1e2a;
+  --border: #252936;
+  --accent: #c8a96e;
+  --accent2: #e8c989;
+  --text: #e8e4dc;
+  --muted: #6b7280;
+  --danger: #e05c5c;
+  --success: #5cba8a;
+  --radius: 12px;
+}
+
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fondo con gradiente ambiental */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(200,169,110,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(92,186,138,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ─── Animaciones globales ─── */
+@keyframes slideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Spinner de carga ─── */
+.spinner {
+  display: inline-block; width: 14px; height: 14px;
+  border: 2px solid rgba(13,15,20,0.3);
+  border-top-color: var(--bg);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}

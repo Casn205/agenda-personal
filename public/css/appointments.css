@@ -1,0 +1,126 @@
+/* ─────────────────────────────────────────
+   appointments.css — Lista de citas y estados vacíos
+   ───────────────────────────────────────── */
+
+/* ─── Cabecera del panel ─── */
+.panel-header {
+  padding: 24px 28px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.panel-title {
+  font-size: 0.85rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.badge {
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.8rem; font-weight: 500;
+  padding: 2px 8px; border-radius: 20px;
+}
+
+/* ─── Buscador ─── */
+.search-box {
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  padding: 10px 14px 10px 36px;
+  outline: none;
+  transition: border-color 0.2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+}
+
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--muted); opacity: 0.5; }
+
+/* ─── Lista scrolleable ─── */
+.appointments-list {
+  flex: 1; overflow-y: auto;
+  padding: 16px 0;
+}
+
+.appointments-list::-webkit-scrollbar { width: 4px; }
+.appointments-list::-webkit-scrollbar-track { background: transparent; }
+.appointments-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ─── Ítem de cita ─── */
+.apt-item {
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+  animation: slideIn 0.3s ease forwards;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+/* Barra lateral de acento al hover/activo */
+.apt-item::before {
+  content: '';
+  position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 3px; height: 0;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+  transition: height 0.2s;
+}
+
+.apt-item:hover { background: var(--surface2); }
+.apt-item:hover::before,
+.apt-item.active::before { height: 60%; }
+.apt-item.active { background: var(--surface2); }
+
+.apt-title {
+  font-size: 1rem; font-weight: 500;
+  color: var(--text); margin-bottom: 6px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.apt-time {
+  font-size: 0.88rem; color: var(--accent);
+  display: flex; align-items: center; gap: 6px;
+}
+
+.apt-time-sep { color: var(--muted); }
+
+.apt-desc {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ─── Indicador de estado ─── */
+.apt-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.78rem; color: var(--success);
+  margin-top: 4px;
+}
+
+.apt-status.past { color: var(--muted); }
+
+.apt-status .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: currentColor;
+}
+
+/* ─── Estado vacío / error ─── */
+.empty-state {
+  padding: 48px 28px; text-align: center;
+}
+
+.empty-state .icon { font-size: 2.5rem; margin-bottom: 16px; opacity: 0.3; }
+.empty-state p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; }
